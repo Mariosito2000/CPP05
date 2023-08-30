@@ -3,6 +3,9 @@
 # define BUREAUCRAT_HPP
 
 #include <string>
+#include "AForm.hpp"
+
+class AForm;
 
 class Bureaucrat
 {
@@ -28,6 +31,8 @@ public:
 	unsigned int	getGrade() const;
 	void			increaseGrade();
 	void			decreaseGrade();
+	void			signForm(const AForm &);
+	void			executeForm(AForm const & form);
 
 /*---OPERATORS---*/
 

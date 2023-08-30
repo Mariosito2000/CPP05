@@ -56,6 +56,34 @@ void			Bureaucrat::decreaseGrade()
 	_grade++;
 }
 
+void			Bureaucrat::signForm(const AForm &form)
+{
+	if (form.getSigned() == true)
+	{
+		std::cout << _name << " couldn’t sign " << form.getName() << " because it's already been signed.\n";
+		return;
+	}
+	else if (_grade > form.getSignGrade())
+	{
+		std::cout << _name << " couldn’t sign " << form.getName() << " because it's beyond his/her competences\n";
+		return;
+	}
+	std::cout << _name << " signed " << form.getName() << "\n";
+}
+
+void			Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << getName() << " executed " << form.getName() << "\n";
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+}
+
 /*---OPERATORS---*/
 
 Bureaucrat & Bureaucrat::operator = (const Bureaucrat &a)
