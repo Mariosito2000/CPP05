@@ -8,8 +8,7 @@
 class RobotomyRequestForm: public AForm
 {
 private:
-	
-	static int	_randomizer;
+
 	std::string	_target;
 
 public:

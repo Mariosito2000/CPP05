@@ -1,9 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-
-int	RobotomyRequestForm::_randomizer = 1;
+#include <sys/time.h>
 
 /*---CONS/DES---*/
 
@@ -35,13 +32,14 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm("Robotomy", 
 void		RobotomyRequestForm::action() const
 {
 	std::cout << "** Drilling noises... **\n";
-	std::srand(time(nullptr) * RobotomyRequestForm::_randomizer);
-	if (std::rand() % 2 == 1)
+	timeval	time;
+	gettimeofday(&time, NULL);
+	if (time.tv_usec % 2 == 1)
 		std::cout << _target << " has been robotomized\n";
 	else
 		std::cout << "Robotomy failed\n";
-	RobotomyRequestForm::_randomizer = RobotomyRequestForm::_randomizer * time(nullptr) + 1;
 }
+
 
 /*---OPERATORS---*/
 
