@@ -14,8 +14,6 @@ private:
 
 public:
 
-	
-
 /*---CONS/DES---*/
 
 	RobotomyRequestForm();
