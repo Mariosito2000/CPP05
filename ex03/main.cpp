@@ -9,21 +9,31 @@
 int	main()
 {
 	//std::cout << ent;
-	Bureaucrat b("Manu", 2);
+	Bureaucrat b("Manue", 1);
 	Intern	Pinfloid;
-	PresidentialPardonForm PP("jyurri");
-	RobotomyRequestForm RR("daccvonza");
-	ShrubberyCreationForm SC("pablofu");
-	AForm * Form = Pinfloid.makeForm("ShrubberyCreationForm", "Josu");
-	if (Form != 0)
+
+	std::cout << "\nMake form\n\n";
+	AForm * SCF = Pinfloid.makeForm("ShrubberyCreationForm", "Josu");
+	if (SCF != 0)
 	{
-		b.signForm(*Form);
-		Form->beSigned(b);
-		//b.executeForm(*Form);
+		b.signForm(*SCF);
+		b.executeForm(*SCF);
 	}
-	RR.beSigned(b);
-	b.executeForm(RR);
-	RR.execute(b);
+std::cout << "\n";
+	AForm * PP = Pinfloid.makeForm("PresidentialPardonForm", "Joseph");
+	if (PP != 0)
+	{
+		b.signForm(*PP);
+		b.executeForm(*PP);
+	}
+std::cout << "\n";
+	AForm * RR = Pinfloid.makeForm("RobotomyRequestForm", "Hezú");
+	if (RR != 0)
+	{
+		b.signForm(*RR);
+		b.executeForm(*RR);
+	}
+	std::cout << "\nEnd\n";
 
 	return (0);
 }

@@ -31,7 +31,7 @@ public:
 	unsigned int	getGrade() const;
 	void			increaseGrade();
 	void			decreaseGrade();
-	void			signForm(const AForm &);
+	void			signForm(AForm &);
 	void			executeForm(AForm const & form);
 
 /*---OPERATORS---*/

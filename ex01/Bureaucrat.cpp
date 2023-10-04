@@ -44,28 +44,32 @@ unsigned int	Bureaucrat::getGrade() const
 
 void			Bureaucrat::increaseGrade()
 {
-	if (_grade <= 1)
+	if (_grade == 1)
 		throw (Bureaucrat::GradeTooHighException());
 	_grade--;
 }
 
 void			Bureaucrat::decreaseGrade()
 {
-	if (_grade >= 150)
+	if (_grade == 150)
 		throw (Bureaucrat::GradeTooLowException());
 	_grade++;
 }
 
-void			Bureaucrat::signForm(const Form &form)
+void			Bureaucrat::signForm(Form &form)
 {
 	if (form.getSigned() == true)
 	{
 		std::cout << _name << " couldn’t sign " << form.getName() << " because it's already been signed.\n";
 		return;
 	}
-	else if (_grade > form.getSignGrade())
+	try
 	{
-		std::cout << _name << " couldn’t sign " << form.getName() << " because it's beyond his/her competences\n";
+		form.beSigned(*this);
+	}
+	catch(const Form::GradeTooLowException& e)
+	{
+		std::cout << _name << " couldn’t sign " << form.getName() << " because bureaucrat grade is too low\n";
 		return;
 	}
 	std::cout << _name << " signed " << form.getName() << "\n";
